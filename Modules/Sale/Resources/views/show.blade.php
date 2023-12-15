@@ -120,7 +120,7 @@
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Grand Total</strong></td>
-                                        <td class="right"><strong>{{ format_currency($sale->total_amount) }}</strong></td>
+                                        <td class="right"><strong>   Rp {{ number_format($sale->total_amount / 10, 3) }}</strong></td>
                                     </tr>
                                     </tbody>
                                 </table>
