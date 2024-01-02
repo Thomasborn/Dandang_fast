@@ -24,7 +24,7 @@
         <div class="row mt-4">
             <div class="col-md-12">
                 <div class="alert alert-info">
-                    <strong>NOTE: Product Code must be a number to generate barcodes!</strong>
+                    <strong>Catatan: Kode Barang Harus Berupa Angka Numerik!</strong>
                 </div>
             </div>
             <div class="col-md-12">

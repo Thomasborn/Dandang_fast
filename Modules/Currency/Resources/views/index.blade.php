@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ route('currencies.create') }}" class="btn btn-primary">
-                        Tambah Currency <i class="bi bi-plus"></i>
+                        Tambah Mata Uang <i class="bi bi-plus"></i>
                         </a>
 
                         <hr>

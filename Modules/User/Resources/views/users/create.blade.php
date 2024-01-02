@@ -12,7 +12,7 @@
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
-        <li class="breadcrumb-item active">Create</li>
+        <li class="breadcrumb-item active">Tambah</li>
     </ol>
 @endsection
 
@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     @include('utils.alerts')
                     <div class="form-group">
-                        <button class="btn btn-primary">Tambah Pengguna <i class="bi bi-check"></i></button>
+                        <button class="btn btn-primary">Tambah User <i class="bi bi-check"></i></button>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label for="role">Role <span class="text-danger">*</span></label>
                                 <select class="form-control" name="role" id="role" required>
-                                    <option value="" selected disabled>Select Role</option>
+                                    <option value="" selected disabled>Pilih Role</option>
                                     @foreach(\Spatie\Permission\Models\Role::where('name', '!=', 'Super Admin')->get() as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach

@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Customers')
-
-@section('third_party_stylesheets')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-@endsection
+@section('title', 'Outlet List')
 
 @section('breadcrumb')
     <ol class="breadcrumb border-0 m-0">
-        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-        <li class="breadcrumb-item active">Customers</li>
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+        <li class="breadcrumb-item active">Outlet</li>
     </ol>
 @endsection
 
@@ -19,15 +15,18 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('customers.create') }}" class="btn btn-primary">
-                            Tambah Customer <i class="bi bi-plus"></i>
-                        </a>
-
-                        <hr>
-
-                        <div class="table-responsive">
-                            {!! $dataTable->table() !!}
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="m-0">Daftar Outlet</h2>
+                            <div>
+                                <a href="{{ route('customers.create') }}" class="btn btn-primary">
+                                    Tambah Outlet <i class="bi bi-plus"></i>
+                                </a>
+                               
+                            </div>
                         </div>
+
+                        <!-- Add DataTable initialization here -->
+                        {!! $dataTable->table() !!}
                     </div>
                 </div>
             </div>

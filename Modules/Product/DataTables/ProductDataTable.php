@@ -52,14 +52,24 @@ class ProductDataTable extends DataTable
                     ->orderBy(7)
                     ->buttons(
                         Button::make('excel')
-                            ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                        Button::make('print')
-                            ->text('<i class="bi bi-printer-fill"></i> Print'),
-                        Button::make('reset')
-                            ->text('<i class="bi bi-x-circle"></i> Reset'),
-                        Button::make('reload')
-                            ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-                    );
+                        ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel')
+                        ->className('btn btn-success'),
+             
+                    Button::make('print')
+                        ->text('<i class="bi bi-file-pdf-fill"></i> PDF')
+                        ->className('btn btn-danger'),
+                    Button::make('reset')
+                        ->text('<i class="bi bi-x-circle"></i> Reset')
+                        ->className('btn btn-warning'),
+                    Button::make('reload')
+                        ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                        ->className('btn btn-info')
+                )
+                ->parameters([
+                    'initComplete' => 'function(settings, json) {
+                        $(this).find("thead").addClass("thead-dark");
+                    }',
+                ]);
     }
 
     protected function getColumns()

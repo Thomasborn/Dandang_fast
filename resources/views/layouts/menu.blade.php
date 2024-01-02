@@ -1,6 +1,6 @@
 <li class="c-sidebar-nav-item {{ request()->routeIs('home') ? 'c-active' : '' }}">
     <a class="c-sidebar-nav-link" href="{{ route('home') }}">
-        <i class="c-sidebar-nav-icon bi bi-house" style="line-height: 1;"></i> Home
+        <i class="c-sidebar-nav-icon bi bi-house" style="line-height: 1;"></i> Beranda
     </a>
 </li>
 
@@ -39,7 +39,7 @@
     </ul>
 </li>
 @endcan
-
+<!-- 
 @can('access_adjustments')
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('adjustments.*') ? 'c-show' : '' }}">
         <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -130,18 +130,18 @@
             </li>
         </ul>
     </li>
-@endcan
+@endcan -->
 
 @can('access_sales')
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('sales.*') || request()->routeIs('sale-payments*') ? 'c-show' : '' }}">
         <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-            <i class="c-sidebar-nav-icon bi bi-receipt" style="line-height: 1;"></i> Sales
+            <i class="c-sidebar-nav-icon bi bi-receipt" style="line-height: 1;"></i> Penjualan
         </a>
         @can('create_sales')
             <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link {{ request()->routeIs('sales.create') ? 'c-active' : '' }}" href="{{ route('sales.create') }}">
-                        <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Tambah Sale
+                        <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Tambah Penjualan
                     </a>
                 </li>
             </ul>
@@ -149,13 +149,13 @@
         <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('sales.index') ? 'c-active' : '' }}" href="{{ route('sales.index') }}">
-                    <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> Semua Sales
+                    <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> Semua Penjualan
                 </a>
             </li>
         </ul>
     </li>
 @endcan
-
+<!-- 
 @can('access_sale_returns')
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('sale-returns.*') || request()->routeIs('sale-return-payments.*') ? 'c-show' : '' }}">
         <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -207,54 +207,83 @@
             </li>
         </ul>
     </li>
-@endcan
+@endcan -->
 
 @can('access_customers|access_suppliers')
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('customers.*') || request()->routeIs('suppliers.*') ? 'c-show' : '' }}">
-        <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+        <!-- <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
             <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> Para Pihak
-        </a>
-        <ul class="c-sidebar-nav-dropdown-items">
+        </a> -->
+        <!-- <ul class="c-sidebar-nav-dropdown-items"> -->
             @can('access_customers')
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link {{ request()->routeIs('customers.*') ? 'c-active' : '' }}" href="{{ route('customers.index') }}">
-                        <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Customers
+                    <i class="c-sidebar-nav-icon bi bi bi-shop" style="line-height: 1;"></i> Outlet
                     </a>
                 </li>
             @endcan
-            @can('access_suppliers')
+            
+
+            <!-- @can('access_suppliers')
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link {{ request()->routeIs('suppliers.*') ? 'c-active' : '' }}" href="{{ route('suppliers.index') }}">
                         <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Suppliers
                     </a>
                 </li>
-            @endcan
-        </ul>
+            @endcan -->
+        <!-- </ul> -->
     </li>
 @endcan
-
-@can('access_reports')
-    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('*-report.index') ? 'c-show' : '' }}">
+@can('access_customers|access_suppliers')
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('depo.*') || request()->routeIs('depo.*') ? 'c-show' : '' }}">
+        <!-- <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> Para Pihak
+        </a> -->
+        <!-- <ul class="c-sidebar-nav-dropdown-items"> -->
+            @can('access_customers')
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link {{ request()->routeIs('depo.*') ? 'c-active' : '' }}" href="{{ route('depo.index') }}">
+                        <i class="c-sidebar-nav-icon bi bi-building" style="line-height: 1;"></i> Depo
+                    </a>
+                </li>
+            @endcan
+            @endcan           
+@can('access_customers|access_suppliers')
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('saler.*') || request()->routeIs('saler.*') ? 'c-show' : '' }}">
+        <!-- <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> Para Pihak
+        </a> -->
+        <!-- <ul class="c-sidebar-nav-dropdown-items"> -->
+            @can('access_customers')
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link {{ request()->routeIs('saler.*') ? 'c-active' : '' }}" href="{{ route('saler.index') }}">
+                        <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Saler
+                    </a>
+                </li>
+            @endcan
+            @endcan           
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('*-report.index') ? 'c-show' : '' }}">
+        @can('access_reports')
         <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
             <i class="c-sidebar-nav-icon bi bi-graph-up" style="line-height: 1;"></i> Laporan
         </a>
         <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('profit-loss-report.index') ? 'c-active' : '' }}" href="{{ route('profit-loss-report.index') }}">
-                    <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Profit / Loss Report
+                    <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Laporan Laba/Rugi
                 </a>
             </li>
-            <li class="c-sidebar-nav-item">
+            <!-- <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('payments-report.index') ? 'c-active' : '' }}" href="{{ route('payments-report.index') }}">
                     <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Payments Report
                 </a>
-            </li>
+            </li> -->
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('sales-report.index') ? 'c-active' : '' }}" href="{{ route('sales-report.index') }}">
-                    <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Sales Report
+                    <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Laporan Penjualan
                 </a>
             </li>
-            <li class="c-sidebar-nav-item">
+            <!-- <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('purchases-report.index') ? 'c-active' : '' }}" href="{{ route('purchases-report.index') }}">
                     <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Purchases Report
                 </a>
@@ -268,7 +297,7 @@
                 <a class="c-sidebar-nav-link {{ request()->routeIs('purchases-return-report.index') ? 'c-active' : '' }}" href="{{ route('purchases-return-report.index') }}">
                     <i class="c-sidebar-nav-icon bi bi-clipboard-data" style="line-height: 1;"></i> Purchases Return Report
                 </a>
-            </li>
+            </li> -->
         </ul>
     </li>
 @endcan
@@ -316,7 +345,7 @@
         <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('currencies*') ? 'c-active' : '' }}" href="{{ route('currencies.index') }}">
-                    <i class="c-sidebar-nav-icon bi bi-cash-stack" style="line-height: 1;"></i> Currencies
+                    <i class="c-sidebar-nav-icon bi bi-cash-stack" style="line-height: 1;"></i> Mata Uang
                 </a>
             </li>
         </ul>

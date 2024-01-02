@@ -109,10 +109,12 @@
             <tbody>
                 <tr style="background-color:#ddd;">
                     <td class="centered" style="padding: 5px;">
-                        Paid By: {{ $sale->payment_method }}
+                       Pembayaran {{ $sale->payment_method }}
                     </td>
                     <td class="centered" style="padding: 5px;">
-                        Amount: {{ format_currency($sale->paid_amount) }}
+                   
+                           {{ format_currency($sale->paid_amount) }}
+                
                     </td>
                 </tr>
                 <tr style="border-bottom: 0;">

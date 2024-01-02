@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <title>Login | {{ config('app.name') }}</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
     <!-- CoreUI CSS -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" crossorigin="anonymous"> -->
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
-<body class="c-app flex-row align-items-center">
-<div class="container">
-    <div class="row mb-3">
-        <div class="col-12 d-flex justify-content-center">
+<body class="c-app row d-flex justify-content-center align-items-center mt-4">
+<div class="container mt-4">
+    <div class="row mb-3 mt-4">
+        <div class="col-12 d-flex justify-content-center mt-4">
             <img width="200" src="{{ asset('images/logo-dark.png') }}" alt="Logo">
         </div>
     </div>
@@ -33,8 +37,8 @@
                 <div class="card-body">
                     <form id="login" method="post" action="{{ url('/login') }}">
                         @csrf
-                        <h1>Login</h1>
-                        <p class="text-muted">Sign In to your account</p>
+                        <h1 class="text-center">Login</h1>
+                        <p class="text-muted">Masuk pada akun Anda</p>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -74,7 +78,7 @@
                             </div>
                             <div class="col-8 text-right">
                                 <a class="btn btn-link px-0" href="{{ route('password.request') }}">
-                                    Forgot password?
+                                   Lupa Password?
                                 </a>
                             </div>
                         </div>

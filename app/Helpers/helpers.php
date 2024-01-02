@@ -9,27 +9,42 @@ if (!function_exists('settings')) {
         return $settings;
     }
 }
+if (!function_exists('bulan_indonesia')) {
+    function bulan_indonesia($monthNumber)
+    {
+        $bulan = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
+        ];
+
+        return $bulan[$monthNumber - 1] ?? '';
+    }
+}
 
 if (!function_exists('format_currency')) {
     function format_currency($value, $format = true) {
         if (!$format) {
             return $value;
         }
-
+    
         $settings = settings();
         $position = $settings->default_currency_position;
         $symbol = $settings->currency->symbol;
         $decimal_separator = $settings->currency->decimal_separator;
         $thousand_separator = $settings->currency->thousand_separator;
-
+    
+        // Multiply the value by 0.01 to move the last two digits to the left of the decimal point
+        $value *= 0.1;
+    
         if ($position == 'prefix') {
-            $formatted_value = $symbol . number_format((float) $value, 2, $decimal_separator, $thousand_separator);
+            $formatted_value = $symbol . number_format((float) $value, 3, $decimal_separator, $thousand_separator);
         } else {
-            $formatted_value = number_format((float) $value, 2, $decimal_separator, $thousand_separator) . $symbol;
+            $formatted_value = number_format((float) $value, 3, $decimal_separator, $thousand_separator) . $symbol;
         }
-
+    
         return $formatted_value;
     }
+    
 }
 
 if (!function_exists('make_reference_id')) {

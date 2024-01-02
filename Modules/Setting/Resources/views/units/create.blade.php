@@ -21,13 +21,13 @@
                             <div class="form-row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="name">Unit Name <span class="text-danger">*</span></label>
+                                        <label for="name">Nama Satuan/ Unit <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="short_name">Short Name <span class="text-danger">*</span></label>
+                                        <label for="short_name">Satuan <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="short_name" required>
                                     </div>
                                 </div>
@@ -39,13 +39,13 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <label for="operation_value">Operation Value</label>
+                                        <label for="operation_value">Nialai Operator</label>
                                         <input type="text" class="form-control" name="operation_value" placeholder="Enter a number">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 d-flex justify-content-end">
                                     <div class="form-group">
-                                        <button class="btn btn-primary">Create Unit <i class="bi bi-check"></i></button>
+                                        <button class="btn btn-primary">Tambah Unit <i class="bi bi-check"></i></button>
                                     </div>
                                 </div>
                             </div>

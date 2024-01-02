@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('sales.index') }}">Sales</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('sales.index') }}">Penjualan</a></li>
         <li class="breadcrumb-item active">Details</li>
     </ol>
 @endsection
@@ -29,17 +29,16 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-sm-4 mb-3 mb-md-0">
-                                <h5 class="mb-2 border-bottom pb-2">Perusahaan Info:</h5>
-                                <div><strong>OMAH IT</strong></div>
-                                <div>YOGYAKARTA</div>
-                                <div>Email: omahit@mai.com</div>
-                                <div>Phone: {{ settings()->company_phone }}</div>
+                                <h5 class="mb-2 border-bottom pb-2">Sales Info:</h5>
+                                <div><strong>{{ $saler->Kode }}</strong></div>
+                                <div>Nama : {{ $saler->Nama }}</div>
+                        
                             </div>
 
                             <div class="col-sm-4 mb-3 mb-md-0">
                                 <h5 class="mb-2 border-bottom pb-2">Outlet Info:</h5>
                                 <div><strong>{{ $customer->customer_name }}</strong></div>
-                                <div>{{ $customer->address }}</div>
+                                <div>Kabupaten: {{ $customer->city }}</div>
                                 <div>Alamat: {{ $customer->address }}</div>
                                 <div>Kontak: {{ $customer->customer_phone }}</div>
                             </div>
@@ -49,10 +48,19 @@
                                 <div>Invoice: <strong>INV/{{ $sale->reference }}</strong></div>
                                 <div>Date: {{ \Carbon\Carbon::parse($sale->date)->format('d M, Y') }}</div>
                                 <div>
-                                    Status: <strong>{{ $sale->status }}</strong>
+                                    Status: <strong>{{ $sale->status }} / @if($sale->status == 'completed')
+                                    Selesai
+                                    @endif
+                                </strong> 
                                 </div>
                                 <div>
-                                    Payment Status: <strong>{{ $sale->payment_status }}</strong>
+                                Status Pembayaran: <strong>{{ $sale->payment_status }} /
+                                    
+                                    @if($sale->payment_status == 'Paid')
+                                    Lunas
+                                    @endif
+                                </strong> 
+
                                 </div>
                             </div>
 
@@ -112,15 +120,13 @@
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Pajak ({{ $sale->tax_percentage }}%)</strong></td>
-                                        <td class="right">{{ format_currency($sale->tax_amount) }}</td>
+                                        <td class="right"> Rp {{ number_format($sale->tax_amount / 10, 3) }}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="left"><strong>Shipping</strong></td>
-                                        <td class="right">{{ format_currency($sale->shipping_amount) }}</td>
-                                    </tr>
+                                
                                     <tr>
                                         <td class="left"><strong>Grand Total</strong></td>
-                                        <td class="right"><strong>   Rp {{ number_format($sale->total_amount / 10, 3) }}</strong></td>
+                                        <td class="right"><strong> {{ format_currency($sale->total_amount)}}
+</strong></td>
                                     </tr>
                                     </tbody>
                                 </table>

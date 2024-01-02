@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Role Name <span class="text-danger">*</span></label>
+                                <label for="name">Nama Role <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="name" required value="{{ $role->name }}">
                             </div>
 
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="select-all">
-                                    <label class="custom-control-label" for="select-all">Give All Permissions</label>
+                                    <label class="custom-control-label" for="select-all">>Berikan Semua Akses / Permissions</label>
                                 </div>
                             </div>
 

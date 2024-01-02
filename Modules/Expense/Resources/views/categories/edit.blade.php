@@ -6,7 +6,7 @@
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('expenses.index') }}">Expenses</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('expense-categories.index') }}">Categories</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('expense-categories.index') }}">Kategori</a></li>
         <li class="breadcrumb-item active">Edit</li>
     </ol>
 @endsection
@@ -22,11 +22,11 @@
                             @csrf
                             @method('patch')
                             <div class="form-group">
-                                <label for="category_name">Category Name <span class="text-danger">*</span></label>
+                                <label for="category_name">Nama <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="category_name" required value="{{ $expenseCategory->category_name }}">
                             </div>
                             <div class="form-group">
-                                <label for="category_description">Description</label>
+                                <label for="category_description">Deskripsi</label>
                                 <textarea class="form-control" name="category_description" id="category_description" rows="5">{{ $expenseCategory->category_description }}</textarea>
                             </div>
                             <div class="form-group">

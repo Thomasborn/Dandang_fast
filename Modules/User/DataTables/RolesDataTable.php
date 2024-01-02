@@ -60,16 +60,19 @@ class RolesDataTable extends DataTable
                 ->addClass('align-middle'),
 
             Column::make('name')
-                ->addClass('text-center')
-                ->addClass('align-middle'),
-
+            ->title('Nama')
+            ->addClass('text-center')
+            ->addClass('align-middle'),
+            
             Column::computed('permissions')
-                ->addClass('text-center')
-                ->addClass('align-middle')
-                ->width('700px'),
-
+            ->title('Akses / Permissions')
+            ->addClass('text-center')
+            ->addClass('align-middle')
+            ->width('700px'),
+            
             Column::computed('action')
-                ->exportable(false)
+            ->title('Aksi')
+            ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center')
                 ->addClass('align-middle'),

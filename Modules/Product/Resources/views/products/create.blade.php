@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Products</a></li>
-        <li class="breadcrumb-item active">Add</li>
+        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Barang</a></li>
+        <li class="breadcrumb-item active">Tambah</li>
     </ol>
 @endsection
 
@@ -27,7 +27,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="product_name">Product Name <span class="text-danger">*</span></label>
+                                        <label for="product_name"> Nama <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="product_name" required value="{{ old('product_name') }}">
                                     </div>
                                 </div>
@@ -44,23 +44,23 @@
                                     <label for="category_id">Kategori <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <select class="form-control" name="category_id" id="category_id" required>
-                                            <option value="" selected disabled>Select Category</option>
+                                            <option value="" selected disabled>Pilih Kategori</option>
                                             @foreach(\Modules\Product\Entities\Category::all() as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="input-group-append d-flex">
                                             <button data-toggle="modal" data-target="#categoryCreateModal" class="btn btn-outline-primary" type="button">
-                                                Add
+                                                Tambah
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="barcode_symbology">Barcode Symbology <span class="text-danger">*</span></label>
+                                        <label for="barcode_symbology">Barcode <span class="text-danger">*</span></label>
                                         <select class="form-control" name="product_barcode_symbology" id="barcode_symbology" required>
-                                            <option value="" selected disabled>Select Symbology</option>
+                                            <option value="" selected disabled>Pilih Barcode</option>
                                             <option value="C128">Code 128</option>
                                             <option value="C39">Code 39</option>
                                             <option value="UPCA">UPC-A</option>

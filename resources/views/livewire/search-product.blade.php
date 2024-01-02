@@ -14,15 +14,15 @@
         </div>
     </div>
 
-    <div wire:loading class="card position-absolute mt-1 border-0" style="z-index: 1;left: 0;right: 0;">
-        <div class="card-body shadow">
+    <!-- <div wire:loading class="card position-absolute mt-1 border-0" style="z-index: 1;left: 0;right: 0;">
+    <div class="card-body shadow">
             <div class="d-flex justify-content-center">
                 <div class="spinner-border text-primary" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     @if(!empty($query))
         <div wire:click="resetQuery" class="position-fixed w-100 h-100" style="left: 0; top: 0; right: 0; bottom: 0;z-index: 1;"></div>
@@ -51,7 +51,7 @@
             <div class="card position-absolute mt-1 border-0" style="z-index: 1;left: 0;right: 0;">
                 <div class="card-body shadow">
                     <div class="alert alert-warning mb-0">
-                        No Product Found....
+                      Tidak ada barang......
                     </div>
                 </div>
             </div>

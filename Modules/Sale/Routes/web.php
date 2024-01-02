@@ -11,6 +11,11 @@
 |
 */
 
+use App\Models\Sales;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Modules\People\Entities\Customer;
+use Modules\Sale\Entities\Sale;
+
 Route::group(['middleware' => 'auth'], function () {
 
     //POS
@@ -19,21 +24,31 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Generate PDF
     Route::get('/sales/pdf/{id}', function ($id) {
-        $sale = \Modules\Sale\Entities\Sale::findOrFail($id);
-        $customer = \Modules\People\Entities\Customer::findOrFail($sale->customer_id);
+        try {
+            // Use dependency injection to fetch the Sale and Customer
+            $sale = Sale::findOrFail($id);
+            $customer = Customer::findOrFail($sale->customer_id);
+            $saler = Sales::where('Kode', $sale->kode_salesman)->firstOrFail();
 
-        $pdf = \PDF::loadView('sale::print', [
-            'sale' => $sale,
-            'customer' => $customer,
-        ])->setPaper('a4');
-
-        return $pdf->stream('sale-'. $sale->reference .'.pdf');
+            // Load the view and pass data to it
+            $pdf = Pdf::loadView('sale::print', [
+                'sale' => $sale,
+                'customer' => $customer,
+                'saler' => $saler,
+            ])->setPaper('a4');
+    
+            // Stream the PDF to the browser
+            return $pdf->stream('sale-' . $sale->reference . '.pdf');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Handle the case where the Sale or Customer is not found
+            return response()->json(['error' => 'Sale or Customer not found'], 404);
+        }
     })->name('sales.pdf');
 
     Route::get('/sales/pos/pdf/{id}', function ($id) {
         $sale = \Modules\Sale\Entities\Sale::findOrFail($id);
 
-        $pdf = \PDF::loadView('sale::print-pos', [
+        $pdf = PDF::loadView('sale::print-pos', [
             'sale' => $sale,
         ])->setPaper('a7')
             ->setOption('margin-top', 8)

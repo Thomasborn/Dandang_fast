@@ -1,0 +1,11 @@
+{
+    "name": "Depo",
+    "alias": "depo",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Depo\\Providers\\DepoServiceProvider"
+    ],
+    "files": []
+}

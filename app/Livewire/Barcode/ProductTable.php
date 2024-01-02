@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Barcode;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Milon\Barcode\Facades\DNS1DFacade;
 use Modules\Product\Entities\Product;
@@ -36,7 +38,7 @@ class ProductTable extends Component
         }
 
         if (!is_numeric($product->product_code)) {
-            return session()->flash('message', 'Can not generate Barcode with this type of Product Code');
+            return session()->flash('message', 'Tidak Dapat menggunakan kode tersebut');
         }
 
         $this->barcodes = [];
@@ -46,15 +48,28 @@ class ProductTable extends Component
             array_push($this->barcodes, $barcode);
         }
     }
-
     public function getPdf() {
-        $pdf = \PDF::loadView('product::barcode.print', [
-            'barcodes' => $this->barcodes,
-            'price' => $this->product->product_price,
-            'name' => $this->product->product_name,
-        ]);
-        return $pdf->stream('barcodes-'. $this->product->product_code .'.pdf');
+
+            $pdf = Pdf::loadView('product::barcode.print', [
+                'barcodes' => $this->barcodes,
+                'price' => $this->product->product_price,
+                'name' => $this->product->product_name,
+            ]);
+    
+            // Optional: You can set paper size, orientation, etc.
+            $pdf->setPaper('a4');
+    
+            // Generate a unique filename
+            $filename = 'barcodes-' . $this->product->product_code . '.pdf';
+    
+            // Save the PDF to a barcodesorary directory
+            $pdf->save(public_path('barcodes/' . $filename));
+    
+            // Return the path to the saved PDF
+            return public_path('barcodes/' . $filename);
+     
     }
+    
 
     public function updatedQuantity() {
         $this->barcodes = [];

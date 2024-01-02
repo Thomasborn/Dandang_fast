@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="category_id">Category <span class="text-danger">*</span></label>
                                         <select name="category_id" id="category_id" class="form-control" required>
-                                            <option value="" selected>Select Category</option>
+                                            <option value="" selected>Pilih Kategori</option>
                                             @foreach(\Modules\Expense\Entities\ExpenseCategory::all() as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                             @endforeach

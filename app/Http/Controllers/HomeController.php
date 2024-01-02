@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Livewire\Reports\PurchasesReport;
+use App\Models\Sales;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Expense\Entities\Expense;
@@ -63,14 +65,52 @@ class HomeController extends Controller
         ]);
     }
 
+private function processChartData($modelClass, $month, $year, $dateColumn)
+{
+    $dates = collect();
+    foreach (range(-6, 0) as $i) {
+        $date = Carbon::now()->addDays($i)->format('d-m-y');
+        $dates->put($date, 0);
+    }
 
-    public function salesPurchasesChart() {
+    $dateRange = Carbon::today()->subDays(6);
+
+    $data = $modelClass::whereMonth($dateColumn, $month)
+        ->whereYear($dateColumn, $year)
+        ->groupBy(DB::raw("DATE_FORMAT($dateColumn,'%d-%m-%y')"))
+        ->orderBy($dateColumn)
+        ->get([
+            DB::raw(DB::raw("DATE_FORMAT($dateColumn,'%d-%m-%y') as date")),
+            DB::raw('COUNT(*) AS count'),
+        ])
+        ->pluck('count', 'date');
+
+    $dates = $dates->merge($data);
+
+    $formattedData = [
+        'original' => [
+            'days' => $dates->keys()->toArray(),
+            'data' => $dates->values()->toArray(),
+        ],
+        // Add more formatted data as needed
+    ];
+
+    return $formattedData;
+}
+    public function salesPurchasesChart($month, $year) {
         abort_if(!request()->ajax(), 404);
 
+
+        if ($month && $year) {
+           
+    $sales = $this->processChartData(Sale::class, $month, $year, 'date');
+    $purchases = $this->processChartData(Purchase::class, $month, $year, 'date');
+    return response()->json(['sales' => $sales, 'purchases' => $purchases]);
+        }
         $sales = $this->salesChartData();
         $purchases = $this->purchasesChartData();
-
         return response()->json(['sales' => $sales, 'purchases' => $purchases]);
+
     }
 
 

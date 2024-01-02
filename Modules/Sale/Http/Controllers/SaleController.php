@@ -2,6 +2,7 @@
 
 namespace Modules\Sale\Http\Controllers;
 
+use App\Models\Sales;
 use Modules\Sale\DataTables\SalesDataTable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Routing\Controller;
@@ -48,6 +49,8 @@ class SaleController extends Controller
 
             $sale = Sale::create([
                 'date' => $request->date,
+                'kode_depo' => $request->depo_id,
+                'kode_salesman' => $request->saler_id,
                 'customer_id' => $request->customer_id,
                 'customer_name' => Customer::findOrFail($request->customer_id)->customer_name,
                 'tax_percentage' => $request->tax_percentage,
@@ -72,6 +75,7 @@ class SaleController extends Controller
                     'product_code' => $cart_item->options->code,
                     'quantity' => $cart_item->qty,
                     'price' => $cart_item->price * 100,
+                    'dpp' => $cart_item->price * 100,
                     'unit_price' => $cart_item->options->unit_price * 100,
                     'sub_total' => $cart_item->options->sub_total * 100,
                     'product_discount_amount' => $cart_item->options->product_discount * 100,
@@ -100,7 +104,7 @@ class SaleController extends Controller
             }
         });
 
-        toast('Sale Created!', 'success');
+        toast('Penjualan Ditambah!', 'success');
 
         return redirect()->route('sales.index');
     }
@@ -110,8 +114,9 @@ class SaleController extends Controller
         abort_if(Gate::denies('show_sales'), 403);
 
         $customer = Customer::findOrFail($sale->customer_id);
-
-        return view('sale::show', compact('sale', 'customer'));
+        $saler = Sales::where('Kode', $sale->kode_salesman)->firstOrFail();
+        return view('sale::show', compact('sale', 'saler', 'customer'));
+        
     }
 
 
@@ -215,7 +220,7 @@ class SaleController extends Controller
             Cart::instance('sale')->destroy();
         });
 
-        toast('Sale Updated!', 'info');
+        toast('Penjualan Diubah!', 'info');
 
         return redirect()->route('sales.index');
     }
@@ -226,7 +231,7 @@ class SaleController extends Controller
 
         $sale->delete();
 
-        toast('Sale Deleted!', 'warning');
+        toast('Penjualan Dihapus!', 'warning');
 
         return redirect()->route('sales.index');
     }
